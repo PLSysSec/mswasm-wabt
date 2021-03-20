@@ -43,6 +43,7 @@ class Type {
     I16 = -0x07,        // 0x79  : packed-type only, used in gc and as v128 lane
     FuncRef = -0x10,    // 0x70
     ExternRef = -0x11,  // 0x6f
+    Handle = -0x12,     // 0x6e
     Func = -0x20,       // 0x60
     Struct = -0x21,     // 0x5f
     Array = -0x22,      // 0x5e
@@ -83,6 +84,7 @@ class Type {
       case Type::Void:      return "void";
       case Type::Any:       return "any";
       case Type::ExternRef: return "externref";
+      case Type::Handle:    return "handle";
       default:              return "<type_index>";
     }
   }
@@ -108,7 +110,7 @@ class Type {
   //   (type $T (func (result i32 i64)))
   //   ...
   //   (block (type $T) ...)
-  // 
+  //
   bool IsIndex() const { return static_cast<int32_t>(enum_) >= 0; }
 
   Index GetIndex() const {

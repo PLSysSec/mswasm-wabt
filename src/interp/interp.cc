@@ -1185,6 +1185,7 @@ RunResult Thread::StepInternal(Trap::Ptr* out_trap) {
     case O::I64Load16U: return DoLoad<u64, u16>(instr, out_trap);
     case O::I64Load32S: return DoLoad<s64, s32>(instr, out_trap);
     case O::I64Load32U: return DoLoad<u64, u32>(instr, out_trap);
+    case O::HandleLoad: return TRAP("handle.load not yet implemented in interpreter");
 
     case O::I32Store:   return DoStore<u32>(instr, out_trap);
     case O::I64Store:   return DoStore<u64>(instr, out_trap);
@@ -1195,6 +1196,7 @@ RunResult Thread::StepInternal(Trap::Ptr* out_trap) {
     case O::I64Store8:  return DoStore<u64, u8>(instr, out_trap);
     case O::I64Store16: return DoStore<u64, u16>(instr, out_trap);
     case O::I64Store32: return DoStore<u64, u32>(instr, out_trap);
+    case O::HandleStore: return TRAP("handle.store not yet implemented in interpreter");
 
     case O::MemorySize: {
       Memory::Ptr memory{store_, inst_->memories()[instr.imm_u32]};
@@ -1427,6 +1429,11 @@ RunResult Thread::StepInternal(Trap::Ptr* out_trap) {
     case O::TableGrow: return DoTableGrow(instr, out_trap);
     case O::TableSize: return DoTableSize(instr);
     case O::TableFill: return DoTableFill(instr, out_trap);
+
+    case O::NewSegment: return TRAP("NewSegment not yet implemented for interpreter");
+    case O::FreeSegment: return TRAP("FreeSegment not yet implemented for interpreter");
+    case O::HandleAdd: return TRAP("handle.add not yet implemented for interpreter");
+    case O::HandleSub: return TRAP("handle.sub not yet implemented for interpreter");
 
     case O::RefNull:
       Push(Ref::Null);

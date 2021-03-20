@@ -242,6 +242,8 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::I16X8ExtaddPairwiseI8X16U:
     case Opcode::I32X4ExtaddPairwiseI16X8S:
     case Opcode::I32X4ExtaddPairwiseI16X8U:
+    case Opcode::NewSegment:
+    case Opcode::FreeSegment:
       // 0 immediates, 1 operand.
       instr.kind = InstrKind::Imm_0_Op_1;
       break;
@@ -455,6 +457,8 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::V128Or:
     case Opcode::V128Xor:
     case Opcode::I8X16Swizzle:
+    case Opcode::HandleAdd:
+    case Opcode::HandleSub:
       // 0 immediates, 2 operands
       instr.kind = InstrKind::Imm_0_Op_2;
       break;
@@ -573,6 +577,7 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::V128Load:
     case Opcode::V128Load32Zero:
     case Opcode::V128Load64Zero:
+    case Opcode::HandleLoad:
       // Index + memory offset immediates, 1 operand.
       instr.kind = InstrKind::Imm_Index_Offset_Op_1;
       instr.imm_u32x2.fst = ReadAt<u32>(offset);
@@ -639,6 +644,7 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::I64Store32:
     case Opcode::I64Store8:
     case Opcode::V128Store:
+    case Opcode::HandleStore:
       // Index and memory offset immediates, 2 operands.
       instr.kind = InstrKind::Imm_Index_Offset_Op_2;
       instr.imm_u32x2.fst = ReadAt<u32>(offset);
