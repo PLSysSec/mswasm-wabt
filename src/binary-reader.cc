@@ -438,6 +438,7 @@ bool BinaryReader::IsConcreteType(Type type) {
     case Type::I64:
     case Type::F32:
     case Type::F64:
+    case Type::Handle:
       return true;
 
     case Type::V128:
