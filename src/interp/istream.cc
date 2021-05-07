@@ -112,6 +112,7 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::Return:
     case Opcode::Unreachable:
     case Opcode::RefNull:
+    case Opcode::HandleNull:
       // 0 immediates, 0 operands.
       instr.kind = InstrKind::Imm_0_Op_0;
       break;

@@ -1436,6 +1436,7 @@ RunResult Thread::StepInternal(Trap::Ptr* out_trap) {
     case O::HandleSub: return TRAP("handle.sub not yet implemented for interpreter");
 
     case O::RefNull:
+    case O::HandleNull:
       Push(Ref::Null);
       break;
 
