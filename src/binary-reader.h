@@ -246,6 +246,7 @@ class BinaryReaderDelegate {
   virtual Result OnGlobalSetExpr(Index global_index) = 0;
   virtual Result OnI32ConstExpr(uint32_t value) = 0;
   virtual Result OnI64ConstExpr(uint64_t value) = 0;
+  virtual Result OnHandleNull() = 0;
   virtual Result OnIfExpr(Type sig_type) = 0;
   virtual Result OnLoadExpr(Opcode opcode,
                             Address alignment_log2,

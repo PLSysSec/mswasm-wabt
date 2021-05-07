@@ -361,6 +361,11 @@ Result BinaryReaderLogging::OnI64ConstExpr(uint64_t value) {
   return reader_->OnI64ConstExpr(value);
 }
 
+Result BinaryReaderLogging::OnHandleNull() {
+  LOGF("OnHandleNull()\n");
+  return reader_->OnHandleNull();
+}
+
 Result BinaryReaderLogging::OnIfExpr(Type sig_type) {
   LOGF("OnIfExpr(sig: ");
   LogType(sig_type);

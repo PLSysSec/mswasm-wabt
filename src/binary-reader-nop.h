@@ -249,6 +249,7 @@ class BinaryReaderNop : public BinaryReaderDelegate {
   Result OnGlobalSetExpr(Index global_index) override { return Result::Ok; }
   Result OnI32ConstExpr(uint32_t value) override { return Result::Ok; }
   Result OnI64ConstExpr(uint64_t value) override { return Result::Ok; }
+  Result OnHandleNull() override { return Result::Ok; }
   Result OnIfExpr(Type sig_type) override { return Result::Ok; }
   Result OnLoadExpr(Opcode opcode,
                     Address alignment_log2,

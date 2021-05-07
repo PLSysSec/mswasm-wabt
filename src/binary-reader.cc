@@ -819,6 +819,12 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
         break;
       }
 
+      case Opcode::HandleNull: {
+        CALLBACK0(OnHandleNull);
+        CALLBACK0(OnOpcodeBare);
+        break;
+      }
+
       case Opcode::GlobalGet: {
         Index global_index;
         CHECK_RESULT(ReadIndex(&global_index, "global.get global index"));
