@@ -248,6 +248,7 @@ class BinaryReaderInterp : public BinaryReaderNop {
   Result OnInitExprI64ConstExpr(Index index, uint64_t value) override;
   Result OnInitExprRefNull(Index index, Type type) override;
   Result OnInitExprRefFunc(Index index, Index func_index) override;
+  Result OnInitExprHandleNull(Index index) override;
 
  private:
   Label* GetLabel(Index depth);
@@ -593,6 +594,11 @@ Result BinaryReaderInterp::EndGlobalInitExpr(Index index) {
           validator_.OnGlobalInitExpr_RefFunc(loc, Var(init_expr_.index_)));
       break;
 
+    case InitExprKind::HandleNull:
+      CHECK_RESULT(
+          validator_.OnGlobalInitExpr_HandleNull(loc));
+      break;
+
     default:
       CHECK_RESULT(validator_.OnGlobalInitExpr_Other(loc));
       break;
@@ -652,6 +658,11 @@ Result BinaryReaderInterp::OnInitExprRefNull(Index index, Type type) {
 Result BinaryReaderInterp::OnInitExprRefFunc(Index index, Index func_index) {
   init_expr_.kind = InitExprKind::RefFunc;
   init_expr_.index_ = func_index;
+  return Result::Ok;
+}
+
+Result BinaryReaderInterp::OnInitExprHandleNull(Index index) {
+  init_expr_.kind = InitExprKind::HandleNull;
   return Result::Ok;
 }
 

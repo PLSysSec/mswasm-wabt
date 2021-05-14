@@ -538,6 +538,11 @@ Result BinaryReaderLogging::OnInitExprI64ConstExpr(Index index,
   return reader_->OnInitExprI64ConstExpr(index, value);
 }
 
+Result BinaryReaderLogging::OnInitExprHandleNull(Index index) {
+  LOGF("OnInitExprHandleNull(index: %" PRIindex ")\n", index);
+  return reader_->OnInitExprHandleNull(index);
+}
+
 Result BinaryReaderLogging::OnDylinkInfo(uint32_t mem_size,
                                          uint32_t mem_align,
                                          uint32_t table_size,

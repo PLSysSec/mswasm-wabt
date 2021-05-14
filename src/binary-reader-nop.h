@@ -544,6 +544,9 @@ class BinaryReaderNop : public BinaryReaderDelegate {
   Result OnInitExprRefFunc(Index index, Index func_index) override {
     return Result::Ok;
   }
+  Result OnInitExprHandleNull(Index index) override {
+    return Result::Ok;
+  }
 };
 
 }  // namespace wabt

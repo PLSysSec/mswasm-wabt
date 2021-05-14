@@ -732,6 +732,11 @@ Result Validator::CheckModule() {
                 expr->loc, cast<RefNullExpr>(expr)->type);
             break;
 
+          case ExprType::HandleNull:
+            result_ |= validator_.OnGlobalInitExpr_HandleNull(
+                expr->loc);
+            break;
+
           default:
             result_ |= validator_.OnGlobalInitExpr_Other(field.loc);
             break;

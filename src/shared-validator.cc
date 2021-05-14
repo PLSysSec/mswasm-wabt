@@ -225,6 +225,10 @@ Result SharedValidator::OnGlobalInitExpr_RefFunc(const Location& loc,
   return result;
 }
 
+Result SharedValidator::OnGlobalInitExpr_HandleNull(const Location& loc) {
+  return CheckType(loc, Type::Handle, globals_.back().type, "global initializer handle-null expression");
+}
+
 Result SharedValidator::OnGlobalInitExpr_Other(const Location& loc) {
   return PrintError(
       loc,

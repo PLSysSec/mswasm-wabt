@@ -786,6 +786,10 @@ void BinaryWriter::WriteExpr(const Func* func, const Expr* expr) {
       WriteU32Leb128WithReloc(index, "global index", RelocType::GlobalIndexLEB);
       break;
     }
+    case ExprType::HandleNull: {
+      assert(false && "HandleNull not implemented here yet");
+      break;
+    }
     case ExprType::If: {
       auto* if_expr = cast<IfExpr>(expr);
       WriteOpcode(stream_, Opcode::If);

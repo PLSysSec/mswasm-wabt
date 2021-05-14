@@ -78,6 +78,7 @@ class SharedValidator {
   Result OnGlobalInitExpr_GlobalGet(const Location&, Var global_var);
   Result OnGlobalInitExpr_RefNull(const Location&, Type type);
   Result OnGlobalInitExpr_RefFunc(const Location&, Var func_var);
+  Result OnGlobalInitExpr_HandleNull(const Location&);
   Result OnGlobalInitExpr_Other(const Location&);
   Result OnEvent(const Location&, Var sig_var);
 

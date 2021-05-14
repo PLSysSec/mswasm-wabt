@@ -536,6 +536,13 @@ Result BinaryReader::ReadInitExpr(Index index, bool require_i32) {
       break;
     }
 
+    case Opcode::HandleNull: {
+      // the _instruction_ handle.null takes a param which it ignores.  but the
+      // _initexpr_ handle.null takes no parameters
+      CALLBACK(OnInitExprHandleNull, index);
+      break;
+    }
+
     case Opcode::End:
       return Result::Ok;
 

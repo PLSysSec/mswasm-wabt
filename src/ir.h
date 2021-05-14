@@ -301,6 +301,7 @@ enum class ExprType {
   Drop,
   GlobalGet,
   GlobalSet,
+  HandleNull,
   If,
   Load,
   LocalGet,
@@ -429,6 +430,8 @@ class RefTypeExpr : public ExprMixin<TypeEnum> {
 
 typedef RefTypeExpr<ExprType::RefNull> RefNullExpr;
 typedef ExprMixin<ExprType::RefIsNull> RefIsNullExpr;
+
+typedef ExprMixin<ExprType::HandleNull> HandleNullExpr;
 
 template <ExprType TypeEnum>
 class OpcodeExpr : public ExprMixin<TypeEnum> {

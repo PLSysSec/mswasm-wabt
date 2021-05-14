@@ -254,6 +254,7 @@ class BinaryReaderIR : public BinaryReaderNop {
   Result OnInitExprI64ConstExpr(Index index, uint64_t value) override;
   Result OnInitExprRefNull(Index index, Type type) override;
   Result OnInitExprRefFunc(Index index, Index func_index) override;
+  Result OnInitExprHandleNull(Index index) override;
 
   Result OnDataSymbol(Index index, uint32_t flags, string_view name,
                        Index segment, uint32_t offset, uint32_t size) override;
@@ -1315,6 +1316,12 @@ Result BinaryReaderIR::OnInitExprRefFunc(Index index, Index func_index) {
   Location loc = GetLocation();
   current_init_expr_->push_back(
       MakeUnique<RefFuncExpr>(Var(func_index, loc), loc));
+  return Result::Ok;
+}
+
+Result BinaryReaderIR::OnInitExprHandleNull(Index index) {
+  Location loc = GetLocation();
+  current_init_expr_->push_back(MakeUnique<HandleNullExpr>(loc));
   return Result::Ok;
 }
 

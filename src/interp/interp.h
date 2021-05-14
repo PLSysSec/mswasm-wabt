@@ -103,7 +103,8 @@ enum class InitExprKind {
   V128,
   GlobalGet,
   RefNull,
-  RefFunc
+  RefFunc,
+  HandleNull,
 };
 
 struct InitExpr {
