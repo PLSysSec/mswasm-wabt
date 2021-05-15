@@ -1,5 +1,27 @@
 [![Github CI Status](https://github.com/WebAssembly/wabt/workflows/CI/badge.svg)](https://github.com/WebAssembly/wabt)
 
+# MS-Wasm fork of WABT
+
+This is the MS-Wasm fork of [WABT](https://github.com/WebAssembly/wabt),
+intended to be compatible with prototype MS-Wasm code.
+
+Not all utilities in WABT will work in this fork.  In particular, `wasm2wat` is
+the only one that has seen any testing at all.  Some of the others may work, but
+have not been tested.  Even `wasm2wat` certainly still has bugs and cases that
+are not covered correctly.  Use at your own risk.
+
+## Building and Running
+
+```
+cmake -G Ninja -B build .
+cd build
+ninja
+```
+
+Then, the utilities can be found in `./build`.
+
+Original README follows.
+
 # WABT: The WebAssembly Binary Toolkit
 
 WABT (we pronounce it "wabbit") is a suite of tools for WebAssembly, including:
