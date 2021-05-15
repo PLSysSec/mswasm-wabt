@@ -153,6 +153,7 @@ ModuleContext::Arities ModuleContext::GetExprArity(const Expr& expr) const {
     case ExprType::TableSize:
     case ExprType::RefNull:
     case ExprType::RefFunc:
+    case ExprType::HandleNull:
       return { 0, 1 };
 
     case ExprType::Unreachable:
@@ -181,11 +182,13 @@ ModuleContext::Arities ModuleContext::GetExprArity(const Expr& expr) const {
     case ExprType::RefIsNull:
     case ExprType::LoadSplat:
     case ExprType::LoadZero:
+    case ExprType::NewSegment:
       return { 1, 1 };
 
     case ExprType::Drop:
     case ExprType::GlobalSet:
     case ExprType::LocalSet:
+    case ExprType::FreeSegment:
       return { 1, 0 };
 
     case ExprType::If:

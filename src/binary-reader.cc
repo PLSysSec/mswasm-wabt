@@ -827,7 +827,7 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       }
 
       case Opcode::HandleNull: {
-        CALLBACK0(OnHandleNull);
+        CALLBACK0(OnHandleNullExpr);
         CALLBACK0(OnOpcodeBare);
         break;
       }
@@ -1725,6 +1725,18 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
         CALLBACK(OnRefIsNullExpr);
         CALLBACK(OnOpcodeBare);
         break;
+
+      case Opcode::NewSegment: {
+        CALLBACK(OnNewSegmentExpr);
+        CALLBACK(OnOpcodeBare);
+        break;
+      }
+
+      case Opcode::FreeSegment: {
+        CALLBACK(OnFreeSegmentExpr);
+        CALLBACK(OnOpcodeBare);
+        break;
+      }
 
       default:
         return ReportUnexpectedOpcode(opcode);

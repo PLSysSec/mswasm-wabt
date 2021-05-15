@@ -361,6 +361,18 @@ Result ExprVisitor::HandleDefaultState(Expr* expr) {
       CHECK_RESULT(delegate_->OnRefIsNullExpr(cast<RefIsNullExpr>(expr)));
       break;
 
+    case ExprType::HandleNull:
+      CHECK_RESULT(delegate_->OnHandleNullExpr(cast<HandleNullExpr>(expr)));
+      break;
+
+    case ExprType::NewSegment:
+      CHECK_RESULT(delegate_->OnNewSegmentExpr(cast<NewSegmentExpr>(expr)));
+      break;
+
+    case ExprType::FreeSegment:
+      CHECK_RESULT(delegate_->OnFreeSegmentExpr(cast<FreeSegmentExpr>(expr)));
+      break;
+
     case ExprType::Nop:
       CHECK_RESULT(delegate_->OnNopExpr(cast<NopExpr>(expr)));
       break;

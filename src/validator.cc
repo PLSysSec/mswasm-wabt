@@ -125,6 +125,9 @@ class Validator : public ExprVisitor::Delegate {
   Result OnRefFuncExpr(RefFuncExpr*) override;
   Result OnRefNullExpr(RefNullExpr*) override;
   Result OnRefIsNullExpr(RefIsNullExpr*) override;
+  Result OnHandleNullExpr(HandleNullExpr*) override;
+  Result OnNewSegmentExpr(NewSegmentExpr*) override;
+  Result OnFreeSegmentExpr(FreeSegmentExpr*) override;
   Result OnNopExpr(NopExpr*) override;
   Result OnReturnExpr(ReturnExpr*) override;
   Result OnReturnCallExpr(ReturnCallExpr*) override;
@@ -435,6 +438,21 @@ Result Validator::OnRefNullExpr(RefNullExpr* expr) {
 
 Result Validator::OnRefIsNullExpr(RefIsNullExpr* expr) {
   result_ |= validator_.OnRefIsNull(expr->loc);
+  return Result::Ok;
+}
+
+Result Validator::OnHandleNullExpr(HandleNullExpr* expr) {
+  result_ |= validator_.OnHandleNull(expr->loc);
+  return Result::Ok;
+}
+
+Result Validator::OnNewSegmentExpr(NewSegmentExpr* expr) {
+  result_ |= validator_.OnNewSegment(expr->loc);
+  return Result::Ok;
+}
+
+Result Validator::OnFreeSegmentExpr(FreeSegmentExpr* expr) {
+  result_ |= validator_.OnFreeSegment(expr->loc);
   return Result::Ok;
 }
 

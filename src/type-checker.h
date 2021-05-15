@@ -112,6 +112,9 @@ class TypeChecker {
   Result OnRefFuncExpr(Index func_index);
   Result OnRefNullExpr(Type type);
   Result OnRefIsNullExpr();
+  Result OnHandleNullExpr();
+  Result OnNewSegmentExpr();
+  Result OnFreeSegmentExpr();
   Result OnRethrow(Index depth);
   Result OnReturn();
   Result OnSelect(const TypeVector& result_types);

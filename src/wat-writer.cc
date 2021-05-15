@@ -548,6 +548,9 @@ class WatWriter::ExprVisitorDelegate : public ExprVisitor::Delegate {
   Result OnRefFuncExpr(RefFuncExpr*) override;
   Result OnRefNullExpr(RefNullExpr*) override;
   Result OnRefIsNullExpr(RefIsNullExpr*) override;
+  Result OnHandleNullExpr(HandleNullExpr*) override;
+  Result OnNewSegmentExpr(NewSegmentExpr*) override;
+  Result OnFreeSegmentExpr(FreeSegmentExpr*) override;
   Result OnNopExpr(NopExpr*) override;
   Result OnReturnExpr(ReturnExpr*) override;
   Result OnReturnCallExpr(ReturnCallExpr*) override;
@@ -819,6 +822,21 @@ Result WatWriter::ExprVisitorDelegate::OnRefNullExpr(RefNullExpr* expr) {
 
 Result WatWriter::ExprVisitorDelegate::OnRefIsNullExpr(RefIsNullExpr* expr) {
   writer_->WritePutsNewline(Opcode::RefIsNull_Opcode.GetName());
+  return Result::Ok;
+}
+
+Result WatWriter::ExprVisitorDelegate::OnHandleNullExpr(HandleNullExpr* expr) {
+  writer_->WritePutsNewline(Opcode::HandleNull_Opcode.GetName());
+  return Result::Ok;
+}
+
+Result WatWriter::ExprVisitorDelegate::OnNewSegmentExpr(NewSegmentExpr* expr) {
+  writer_->WritePutsNewline(Opcode::NewSegment_Opcode.GetName());
+  return Result::Ok;
+}
+
+Result WatWriter::ExprVisitorDelegate::OnFreeSegmentExpr(FreeSegmentExpr* expr) {
+  writer_->WritePutsNewline(Opcode::FreeSegment_Opcode.GetName());
   return Result::Ok;
 }
 

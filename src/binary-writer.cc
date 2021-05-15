@@ -863,6 +863,14 @@ void BinaryWriter::WriteExpr(const Func* func, const Expr* expr) {
       WriteOpcode(stream_, Opcode::MemorySize);
       WriteU32Leb128(stream_, 0, "memory.size reserved");
       break;
+    case ExprType::NewSegment: {
+      assert(false && "NewSegment not implemented here yet");
+      break;
+    }
+    case ExprType::FreeSegment: {
+      assert(false && "FreeSegment not implemented here yet");
+      break;
+    }
     case ExprType::TableCopy: {
       auto* copy_expr = cast<TableCopyExpr>(expr);
       Index dst = module_->GetTableIndex(copy_expr->dst_table);

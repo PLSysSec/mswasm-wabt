@@ -299,6 +299,7 @@ enum class ExprType {
   Const,
   Convert,
   Drop,
+  FreeSegment,
   GlobalGet,
   GlobalSet,
   HandleNull,
@@ -314,6 +315,7 @@ enum class ExprType {
   MemoryGrow,
   MemoryInit,
   MemorySize,
+  NewSegment,
   Nop,
   RefIsNull,
   RefFunc,
@@ -432,6 +434,8 @@ typedef RefTypeExpr<ExprType::RefNull> RefNullExpr;
 typedef ExprMixin<ExprType::RefIsNull> RefIsNullExpr;
 
 typedef ExprMixin<ExprType::HandleNull> HandleNullExpr;
+typedef ExprMixin<ExprType::NewSegment> NewSegmentExpr;
+typedef ExprMixin<ExprType::FreeSegment> FreeSegmentExpr;
 
 template <ExprType TypeEnum>
 class OpcodeExpr : public ExprMixin<TypeEnum> {

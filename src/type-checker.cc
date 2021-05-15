@@ -767,6 +767,21 @@ Result TypeChecker::OnRefIsNullExpr() {
   return result;
 }
 
+Result TypeChecker::OnHandleNullExpr() {
+  PushType(Type::Handle);
+  return Result::Ok;
+}
+
+Result TypeChecker::OnNewSegmentExpr() {
+  Result result = PopAndCheck1Type(Type::I32, "new_segment");
+  PushType(Type::Handle);
+  return result;
+}
+
+Result TypeChecker::OnFreeSegmentExpr() {
+  return PopAndCheck1Type(Type::Handle, "free_segment");
+}
+
 Result TypeChecker::OnRethrow(Index depth) {
   Result result = Result::Ok;
   Label* label;

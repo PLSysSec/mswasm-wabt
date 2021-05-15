@@ -154,6 +154,9 @@ class SharedValidator {
   Result OnRefFunc(const Location&, Var func_var);
   Result OnRefIsNull(const Location&);
   Result OnRefNull(const Location&, Type type);
+  Result OnHandleNull(const Location&);
+  Result OnNewSegment(const Location&);
+  Result OnFreeSegment(const Location&);
   Result OnRethrow(const Location&, Var depth);
   Result OnReturnCall(const Location&, Var func_var);
   Result OnReturnCallIndirect(const Location&, Var sig_var, Var table_var);

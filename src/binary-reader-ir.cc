@@ -187,6 +187,9 @@ class BinaryReaderIR : public BinaryReaderNop {
   Result OnRefFuncExpr(Index func_index) override;
   Result OnRefNullExpr(Type type) override;
   Result OnRefIsNullExpr() override;
+  Result OnHandleNullExpr() override;
+  Result OnNewSegmentExpr() override;
+  Result OnFreeSegmentExpr() override;
   Result OnNopExpr() override;
   Result OnRethrowExpr(Index depth) override;
   Result OnReturnExpr() override;
@@ -924,6 +927,18 @@ Result BinaryReaderIR::OnRefNullExpr(Type type) {
 
 Result BinaryReaderIR::OnRefIsNullExpr() {
   return AppendExpr(MakeUnique<RefIsNullExpr>());
+}
+
+Result BinaryReaderIR::OnHandleNullExpr() {
+  return AppendExpr(MakeUnique<HandleNullExpr>());
+}
+
+Result BinaryReaderIR::OnNewSegmentExpr() {
+  return AppendExpr(MakeUnique<NewSegmentExpr>());
+}
+
+Result BinaryReaderIR::OnFreeSegmentExpr() {
+  return AppendExpr(MakeUnique<FreeSegmentExpr>());
 }
 
 Result BinaryReaderIR::OnNopExpr() {

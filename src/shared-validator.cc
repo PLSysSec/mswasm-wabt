@@ -1021,6 +1021,27 @@ Result SharedValidator::OnRefNull(const Location& loc, Type type) {
   return result;
 }
 
+Result SharedValidator::OnHandleNull(const Location& loc) {
+  Result result = Result::Ok;
+  expr_loc_ = &loc;
+  result |= typechecker_.OnHandleNullExpr();
+  return result;
+}
+
+Result SharedValidator::OnNewSegment(const Location& loc) {
+  Result result = Result::Ok;
+  expr_loc_ = &loc;
+  result |= typechecker_.OnNewSegmentExpr();
+  return result;
+}
+
+Result SharedValidator::OnFreeSegment(const Location& loc) {
+  Result result = Result::Ok;
+  expr_loc_ = &loc;
+  result |= typechecker_.OnFreeSegmentExpr();
+  return result;
+}
+
 Result SharedValidator::OnRethrow(const Location& loc, Var depth) {
   Result result = Result::Ok;
   expr_loc_ = &loc;

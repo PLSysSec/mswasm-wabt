@@ -361,9 +361,19 @@ Result BinaryReaderLogging::OnI64ConstExpr(uint64_t value) {
   return reader_->OnI64ConstExpr(value);
 }
 
-Result BinaryReaderLogging::OnHandleNull() {
+Result BinaryReaderLogging::OnHandleNullExpr() {
   LOGF("OnHandleNull()\n");
-  return reader_->OnHandleNull();
+  return reader_->OnHandleNullExpr();
+}
+
+Result BinaryReaderLogging::OnNewSegmentExpr() {
+  LOGF("OnNewSegment()\n");
+  return reader_->OnNewSegmentExpr();
+}
+
+Result BinaryReaderLogging::OnFreeSegmentExpr() {
+  LOGF("OnFreeSegment()\n");
+  return reader_->OnFreeSegmentExpr();
 }
 
 Result BinaryReaderLogging::OnIfExpr(Type sig_type) {

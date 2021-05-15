@@ -180,7 +180,9 @@ class BinaryReaderLogging : public BinaryReaderDelegate {
   Result OnGlobalSetExpr(Index global_index) override;
   Result OnI32ConstExpr(uint32_t value) override;
   Result OnI64ConstExpr(uint64_t value) override;
-  Result OnHandleNull() override;
+  Result OnHandleNullExpr() override;
+  Result OnNewSegmentExpr() override;
+  Result OnFreeSegmentExpr() override;
   Result OnIfExpr(Type sig_type) override;
   Result OnLoadExpr(Opcode opcode,
                     Address alignment_log2,

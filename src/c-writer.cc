@@ -1445,6 +1445,16 @@ void CWriter::Write(const ExprList& exprs) {
         break;
       }
 
+      case ExprType::NewSegment: {
+        assert(false && "NewSegment not implemented here yet");
+        break;
+      }
+
+      case ExprType::FreeSegment: {
+        assert(false && "FreeSegment not implemented here yet");
+        break;
+      }
+
       case ExprType::If: {
         const IfExpr& if_ = *cast<IfExpr>(&expr);
         Write("if (", StackVar(0), ") ", OpenBrace());

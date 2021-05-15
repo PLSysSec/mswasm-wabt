@@ -108,6 +108,9 @@ class ExprVisitor::Delegate {
   virtual Result OnRefFuncExpr(RefFuncExpr*) = 0;
   virtual Result OnRefNullExpr(RefNullExpr*) = 0;
   virtual Result OnRefIsNullExpr(RefIsNullExpr*) = 0;
+  virtual Result OnHandleNullExpr(HandleNullExpr*) = 0;
+  virtual Result OnNewSegmentExpr(NewSegmentExpr*) = 0;
+  virtual Result OnFreeSegmentExpr(FreeSegmentExpr*) = 0;
   virtual Result OnNopExpr(NopExpr*) = 0;
   virtual Result OnReturnExpr(ReturnExpr*) = 0;
   virtual Result OnReturnCallExpr(ReturnCallExpr*) = 0;
@@ -179,6 +182,9 @@ class ExprVisitor::DelegateNop : public ExprVisitor::Delegate {
   Result OnRefFuncExpr(RefFuncExpr*) override { return Result::Ok; }
   Result OnRefNullExpr(RefNullExpr*) override { return Result::Ok; }
   Result OnRefIsNullExpr(RefIsNullExpr*) override { return Result::Ok; }
+  Result OnHandleNullExpr(HandleNullExpr*) override { return Result::Ok; }
+  Result OnNewSegmentExpr(NewSegmentExpr*) override { return Result::Ok; }
+  Result OnFreeSegmentExpr(FreeSegmentExpr*) override { return Result::Ok; }
   Result OnNopExpr(NopExpr*) override { return Result::Ok; }
   Result OnReturnExpr(ReturnExpr*) override { return Result::Ok; }
   Result OnReturnCallExpr(ReturnCallExpr*) override { return Result::Ok; }
