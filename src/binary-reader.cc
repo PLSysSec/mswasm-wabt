@@ -942,7 +942,8 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::V128Load16X4S:
       case Opcode::V128Load16X4U:
       case Opcode::V128Load32X2S:
-      case Opcode::V128Load32X2U: {
+      case Opcode::V128Load32X2U:
+      case Opcode::HandleLoad: {
         Address alignment_log2;
         CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
         Address offset;
@@ -961,7 +962,8 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::I64Store:
       case Opcode::F32Store:
       case Opcode::F64Store:
-      case Opcode::V128Store: {
+      case Opcode::V128Store:
+      case Opcode::HandleStore: {
         Address alignment_log2;
         CHECK_RESULT(ReadAlignment(&alignment_log2, "store alignment"));
         Address offset;
