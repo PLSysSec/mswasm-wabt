@@ -146,6 +146,13 @@ bool IsPlainInstr(TokenType token_type) {
     case TokenType::TableGrow:
     case TokenType::TableSize:
     case TokenType::TableFill:
+    case TokenType::NewSegment:
+    case TokenType::FreeSegment:
+    case TokenType::HandleLoad:
+    case TokenType::HandleStore:
+    case TokenType::HandleAdd:
+    case TokenType::HandleSub:
+    case TokenType::HandleNull:
     case TokenType::Throw:
     case TokenType::Rethrow:
     case TokenType::RefFunc:
@@ -800,7 +807,7 @@ bool WastParser::ParseElemExprVarListOpt(ElemExprVector* out_list) {
 Result WastParser::ParseValueType(Type* out_type) {
   WABT_TRACE(ParseValueType);
   if (!PeekMatch(TokenType::ValueType)) {
-    return ErrorExpected({"i32", "i64", "f32", "f64", "v128", "externref"});
+    return ErrorExpected({"i32", "i64", "f32", "f64", "v128", "externref", "handle"});
   }
 
   Token token = Consume();
@@ -1874,11 +1881,13 @@ Result WastParser::ParsePlainInstr(std::unique_ptr<Expr>* out_expr) {
       break;
 
     case TokenType::Load:
+    case TokenType::HandleLoad:
       CHECK_RESULT(
           ParsePlainLoadStoreInstr<LoadExpr>(loc, Consume(), out_expr));
       break;
 
     case TokenType::Store:
+    case TokenType::HandleStore:
       CHECK_RESULT(
           ParsePlainLoadStoreInstr<StoreExpr>(loc, Consume(), out_expr));
       break;
@@ -2008,6 +2017,22 @@ Result WastParser::ParsePlainInstr(std::unique_ptr<Expr>* out_expr) {
       // TODO: Table index.
       CHECK_RESULT(ParsePlainInstrVar<TableFillExpr>(loc, out_expr));
       break;
+
+    case TokenType::NewSegment:
+      ErrorUnlessOpcodeEnabled(Consume());
+      out_expr->reset(new NewSegmentExpr(loc));
+      break;
+
+    case TokenType::FreeSegment:
+      ErrorUnlessOpcodeEnabled(Consume());
+      out_expr->reset(new FreeSegmentExpr(loc));
+      break;
+
+    case TokenType::HandleNull: {
+      ErrorUnlessOpcodeEnabled(Consume());
+      out_expr->reset(new HandleNullExpr(loc));
+      break;
+    }
 
     case TokenType::RefFunc:
       ErrorUnlessOpcodeEnabled(Consume());
@@ -2845,7 +2870,7 @@ Result WastParser::ParseGlobalType(Global* global) {
   if (MatchLpar(TokenType::Mut)) {
     global->mutable_ = true;
     CHECK_RESULT(ParseValueType(&global->type));
-    CHECK_RESULT(ErrorIfLpar({"i32", "i64", "f32", "f64"}));
+    CHECK_RESULT(ErrorIfLpar({"i32", "i64", "f32", "f64", "handle"}));
     EXPECT(Rpar);
   } else {
     CHECK_RESULT(ParseValueType(&global->type));

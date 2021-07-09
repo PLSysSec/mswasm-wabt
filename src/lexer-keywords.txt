@@ -166,6 +166,7 @@ f64x2.convert_low_i32x4_u, TokenType::Unary, Opcode::F64X2ConvertLowI32X4U
 f64x2.promote_low_f32x4, TokenType::Unary, Opcode::F64X2PromoteLowF32X4
 f64x2, TokenType::F64X2
 field, TokenType::Field
+free_segment, TokenType::FreeSegment, Opcode::FreeSegment
 funcref, Type::FuncRef
 func, Type::FuncRef, TokenType::Func
 get, TokenType::Get
@@ -173,6 +174,12 @@ global.get, TokenType::GlobalGet, Opcode::GlobalGet
 global.set, TokenType::GlobalSet, Opcode::GlobalSet
 global, TokenType::Global
 grow_memory, TokenType::MemoryGrow, Opcode::MemoryGrow
+handle, Type::Handle
+handle.null, TokenType::HandleNull, Opcode::HandleNull
+handle.load, TokenType::HandleLoad, Opcode::HandleLoad
+handle.store, TokenType::HandleStore, Opcode::HandleStore
+handle.add, TokenType::Binary, Opcode::HandleAdd
+handle.sub, TokenType::Binary, Opcode::HandleSub
 i16x8.abs, TokenType::Unary, Opcode::I16X8Abs
 i16x8.add_sat_s, TokenType::Binary, Opcode::I16X8AddSatS
 i16x8.add_sat_u, TokenType::Binary, Opcode::I16X8AddSatU
@@ -526,6 +533,7 @@ module, TokenType::Module
 mut, TokenType::Mut
 nan:arithmetic, TokenType::NanArithmetic
 nan:canonical, TokenType::NanCanonical
+new_segment, TokenType::NewSegment, Opcode::NewSegment
 nop, TokenType::Nop, Opcode::Nop
 offset, TokenType::Offset
 output, TokenType::Output

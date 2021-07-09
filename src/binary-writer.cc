@@ -787,7 +787,7 @@ void BinaryWriter::WriteExpr(const Func* func, const Expr* expr) {
       break;
     }
     case ExprType::HandleNull: {
-      assert(false && "HandleNull not implemented here yet");
+      WriteOpcode(stream_, Opcode::HandleNull);
       break;
     }
     case ExprType::If: {
@@ -864,11 +864,11 @@ void BinaryWriter::WriteExpr(const Func* func, const Expr* expr) {
       WriteU32Leb128(stream_, 0, "memory.size reserved");
       break;
     case ExprType::NewSegment: {
-      assert(false && "NewSegment not implemented here yet");
+      WriteOpcode(stream_, Opcode::NewSegment);
       break;
     }
     case ExprType::FreeSegment: {
-      assert(false && "FreeSegment not implemented here yet");
+      WriteOpcode(stream_, Opcode::FreeSegment);
       break;
     }
     case ExprType::TableCopy: {
