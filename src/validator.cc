@@ -126,6 +126,7 @@ class Validator : public ExprVisitor::Delegate {
   Result OnRefNullExpr(RefNullExpr*) override;
   Result OnRefIsNullExpr(RefIsNullExpr*) override;
   Result OnHandleNullExpr(HandleNullExpr*) override;
+  Result OnHandleGetOffsetExpr(HandleGetOffsetExpr*) override;
   Result OnNewSegmentExpr(NewSegmentExpr*) override;
   Result OnFreeSegmentExpr(FreeSegmentExpr*) override;
   Result OnNopExpr(NopExpr*) override;
@@ -443,6 +444,11 @@ Result Validator::OnRefIsNullExpr(RefIsNullExpr* expr) {
 
 Result Validator::OnHandleNullExpr(HandleNullExpr* expr) {
   result_ |= validator_.OnHandleNull(expr->loc);
+  return Result::Ok;
+}
+
+Result Validator::OnHandleGetOffsetExpr(HandleGetOffsetExpr* expr) {
+  result_ |= validator_.OnHandleGetOffset(expr->loc);
   return Result::Ok;
 }
 

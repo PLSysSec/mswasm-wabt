@@ -549,6 +549,7 @@ class WatWriter::ExprVisitorDelegate : public ExprVisitor::Delegate {
   Result OnRefNullExpr(RefNullExpr*) override;
   Result OnRefIsNullExpr(RefIsNullExpr*) override;
   Result OnHandleNullExpr(HandleNullExpr*) override;
+  Result OnHandleGetOffsetExpr(HandleGetOffsetExpr*) override;
   Result OnNewSegmentExpr(NewSegmentExpr*) override;
   Result OnFreeSegmentExpr(FreeSegmentExpr*) override;
   Result OnNopExpr(NopExpr*) override;
@@ -827,6 +828,11 @@ Result WatWriter::ExprVisitorDelegate::OnRefIsNullExpr(RefIsNullExpr* expr) {
 
 Result WatWriter::ExprVisitorDelegate::OnHandleNullExpr(HandleNullExpr* expr) {
   writer_->WritePutsNewline(Opcode::HandleNull_Opcode.GetName());
+  return Result::Ok;
+}
+
+Result WatWriter::ExprVisitorDelegate::OnHandleGetOffsetExpr(HandleGetOffsetExpr* expr) {
+  writer_->WritePutsNewline(Opcode::HandleGetOffset_Opcode.GetName());
   return Result::Ok;
 }
 

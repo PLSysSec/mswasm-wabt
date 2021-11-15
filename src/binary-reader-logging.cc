@@ -366,6 +366,11 @@ Result BinaryReaderLogging::OnHandleNullExpr() {
   return reader_->OnHandleNullExpr();
 }
 
+Result BinaryReaderLogging::OnHandleGetOffsetExpr() {
+  LOGF("OnHandleGetOffset()\n");
+  return reader_->OnHandleGetOffsetExpr();
+}
+
 Result BinaryReaderLogging::OnNewSegmentExpr() {
   LOGF("OnNewSegment()\n");
   return reader_->OnNewSegmentExpr();

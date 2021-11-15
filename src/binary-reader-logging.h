@@ -181,6 +181,7 @@ class BinaryReaderLogging : public BinaryReaderDelegate {
   Result OnI32ConstExpr(uint32_t value) override;
   Result OnI64ConstExpr(uint64_t value) override;
   Result OnHandleNullExpr() override;
+  Result OnHandleGetOffsetExpr() override;
   Result OnNewSegmentExpr() override;
   Result OnFreeSegmentExpr() override;
   Result OnIfExpr(Type sig_type) override;

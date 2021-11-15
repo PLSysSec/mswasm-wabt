@@ -155,6 +155,7 @@ class SharedValidator {
   Result OnRefIsNull(const Location&);
   Result OnRefNull(const Location&, Type type);
   Result OnHandleNull(const Location&);
+  Result OnHandleGetOffset(const Location&);
   Result OnNewSegment(const Location&);
   Result OnFreeSegment(const Location&);
   Result OnRethrow(const Location&, Var depth);

@@ -1435,6 +1435,7 @@ RunResult Thread::StepInternal(Trap::Ptr* out_trap) {
 
     case O::NewSegment: return TRAP("NewSegment not yet implemented for interpreter");
     case O::FreeSegment: return TRAP("FreeSegment not yet implemented for interpreter");
+    case O::HandleGetOffset: return TRAP("handle.get_offset not yet implemented for interpeter");
     case O::HandleAdd: return TRAP("handle.add not yet implemented for interpreter");
     case O::HandleSub: return TRAP("handle.sub not yet implemented for interpreter");
 

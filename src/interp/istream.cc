@@ -245,6 +245,7 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::I32X4ExtaddPairwiseI16X8U:
     case Opcode::NewSegment:
     case Opcode::FreeSegment:
+    case Opcode::HandleGetOffset:
       // 0 immediates, 1 operand.
       instr.kind = InstrKind::Imm_0_Op_1;
       break;

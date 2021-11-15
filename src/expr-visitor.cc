@@ -365,6 +365,10 @@ Result ExprVisitor::HandleDefaultState(Expr* expr) {
       CHECK_RESULT(delegate_->OnHandleNullExpr(cast<HandleNullExpr>(expr)));
       break;
 
+    case ExprType::HandleGetOffset:
+      CHECK_RESULT(delegate_->OnHandleGetOffsetExpr(cast<HandleGetOffsetExpr>(expr)));
+      break;
+
     case ExprType::NewSegment:
       CHECK_RESULT(delegate_->OnNewSegmentExpr(cast<NewSegmentExpr>(expr)));
       break;

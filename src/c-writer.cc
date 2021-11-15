@@ -1445,6 +1445,11 @@ void CWriter::Write(const ExprList& exprs) {
         break;
       }
 
+      case ExprType::HandleGetOffset: {
+        assert(false && "HandleGetOffset not implemented here yet");
+        break;
+      }
+
       case ExprType::NewSegment: {
         assert(false && "NewSegment not implemented here yet");
         break;
