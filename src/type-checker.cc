@@ -484,7 +484,7 @@ Result TypeChecker::OnCall(const TypeVector& param_types,
 
 Result TypeChecker::OnCallIndirect(const TypeVector& param_types,
                                    const TypeVector& result_types) {
-  Result result = PopAndCheck1Type(Type::I32, "call_indirect");
+  Result result = PopAndCheck1Type(Type::Handle, "call_indirect");
   result |= PopAndCheckCall(param_types, result_types, "call_indirect");
   return result;
 }
