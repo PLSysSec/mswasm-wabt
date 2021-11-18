@@ -224,7 +224,7 @@ WABT_OPCODE(___, Handle, Handle, ___, 8, 0,   0xf8, HandleStore, "handle.store",
 WABT_OPCODE(Handle, Handle, I32, ___, 0, 0,   0xf9, HandleAdd, "handle.add", "")
 WABT_OPCODE(Handle, Handle, I32, ___, 0, 0,   0xfa, HandleSub, "handle.sub", "")
 WABT_OPCODE(Handle, ___, ___, ___,  0,  0,    0xfb, HandleNull, "handle.null", "")
-WABT_OPCODE(I32, Handle, ___, ___,  0,  0,    0xfc, HandleGetOffset, "handle.get_offset", "")
+WABT_OPCODE(I32, Handle, ___, ___,  0,  0,    0xff, HandleGetOffset, "handle.get_offset", "")
 
 /* Sign-extension opcodes (--enable-sign-extension) */
 WABT_OPCODE(I32,  I32,  ___,  ___,  0,  0,    0xC0, I32Extend8S, "i32.extend8_s", "")

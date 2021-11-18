@@ -890,7 +890,7 @@ Perfect_Hash::InWordSet (const char *str, size_t len)
       {"current_memory", TokenType::MemorySize, Opcode::MemorySize},
       {""},
 #line 179 "src/lexer-keywords.txt"
-      {"handle.get_offset", TokenType::HandleGetOffset, Opcode::HandleGetOffset},
+      {"handle.get_offset", TokenType::Unary, Opcode::HandleGetOffset},
       {""}, {""}, {""}, {""}, {""},
 #line 536 "src/lexer-keywords.txt"
       {"nan:canonical", TokenType::NanCanonical},

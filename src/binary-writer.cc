@@ -871,10 +871,6 @@ void BinaryWriter::WriteExpr(const Func* func, const Expr* expr) {
       WriteOpcode(stream_, Opcode::FreeSegment);
       break;
     }
-    case ExprType::HandleGetOffset: {
-      WriteOpcode(stream_, Opcode::HandleGetOffset);
-      break;
-    }
     case ExprType::TableCopy: {
       auto* copy_expr = cast<TableCopyExpr>(expr);
       Index dst = module_->GetTableIndex(copy_expr->dst_table);

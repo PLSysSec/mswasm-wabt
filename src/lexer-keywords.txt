@@ -176,7 +176,7 @@ global, TokenType::Global
 grow_memory, TokenType::MemoryGrow, Opcode::MemoryGrow
 handle, Type::Handle
 handle.null, TokenType::HandleNull, Opcode::HandleNull
-handle.get_offset, TokenType::HandleGetOffset, Opcode::HandleGetOffset
+handle.get_offset, TokenType::Unary, Opcode::HandleGetOffset
 handle.load, TokenType::HandleLoad, Opcode::HandleLoad
 handle.store, TokenType::HandleStore, Opcode::HandleStore
 handle.add, TokenType::Binary, Opcode::HandleAdd
