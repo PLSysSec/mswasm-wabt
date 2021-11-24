@@ -817,14 +817,14 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
         break;
       }
 
-      case Opcode::V128Const: {
-        v128 value_bits;
-        ZeroMemory(value_bits);
-        CHECK_RESULT(ReadV128(&value_bits, "v128.const value"));
-        CALLBACK(OnV128ConstExpr, value_bits);
-        CALLBACK(OnOpcodeV128, value_bits);
-        break;
-      }
+      // case Opcode::V128Const: {
+      //   v128 value_bits;
+      //   ZeroMemory(value_bits);
+      //   CHECK_RESULT(ReadV128(&value_bits, "v128.const value"));
+      //   CALLBACK(OnV128ConstExpr, value_bits);
+      //   CALLBACK(OnOpcodeV128, value_bits);
+      //   break;
+      // }
 
       case Opcode::HandleNull: {
         CALLBACK0(OnHandleNullExpr);
@@ -936,13 +936,13 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::I64Load:
       case Opcode::F32Load:
       case Opcode::F64Load:
-      case Opcode::V128Load:
-      case Opcode::V128Load8X8S:
-      case Opcode::V128Load8X8U:
-      case Opcode::V128Load16X4S:
-      case Opcode::V128Load16X4U:
-      case Opcode::V128Load32X2S:
-      case Opcode::V128Load32X2U:
+      // case Opcode::V128Load:
+      // case Opcode::V128Load8X8S:
+      // case Opcode::V128Load8X8U:
+      // case Opcode::V128Load16X4S:
+      // case Opcode::V128Load16X4U:
+      // case Opcode::V128Load32X2S:
+      // case Opcode::V128Load32X2U:
       case Opcode::HandleLoad: {
         Address alignment_log2;
         CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
@@ -1036,90 +1036,90 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::F64Min:
       case Opcode::F64Max:
       case Opcode::F64Copysign:
-      case Opcode::I8X16Add:
-      case Opcode::I16X8Add:
-      case Opcode::I32X4Add:
-      case Opcode::I64X2Add:
-      case Opcode::I8X16Sub:
-      case Opcode::I16X8Sub:
-      case Opcode::I32X4Sub:
-      case Opcode::I64X2Sub:
-      case Opcode::I16X8Mul:
-      case Opcode::I32X4Mul:
-      case Opcode::I64X2Mul:
-      case Opcode::I8X16AddSatS:
-      case Opcode::I8X16AddSatU:
-      case Opcode::I16X8AddSatS:
-      case Opcode::I16X8AddSatU:
-      case Opcode::I8X16SubSatS:
-      case Opcode::I8X16SubSatU:
-      case Opcode::I16X8SubSatS:
-      case Opcode::I16X8SubSatU:
-      case Opcode::I8X16MinS:
-      case Opcode::I16X8MinS:
-      case Opcode::I32X4MinS:
-      case Opcode::I8X16MinU:
-      case Opcode::I16X8MinU:
-      case Opcode::I32X4MinU:
-      case Opcode::I8X16MaxS:
-      case Opcode::I16X8MaxS:
-      case Opcode::I32X4MaxS:
-      case Opcode::I8X16MaxU:
-      case Opcode::I16X8MaxU:
-      case Opcode::I32X4MaxU:
-      case Opcode::I8X16Shl:
-      case Opcode::I16X8Shl:
-      case Opcode::I32X4Shl:
-      case Opcode::I64X2Shl:
-      case Opcode::I8X16ShrS:
-      case Opcode::I8X16ShrU:
-      case Opcode::I16X8ShrS:
-      case Opcode::I16X8ShrU:
-      case Opcode::I32X4ShrS:
-      case Opcode::I32X4ShrU:
-      case Opcode::I64X2ShrS:
-      case Opcode::I64X2ShrU:
-      case Opcode::V128And:
-      case Opcode::V128Or:
-      case Opcode::V128Xor:
-      case Opcode::F32X4Min:
-      case Opcode::F32X4PMin:
-      case Opcode::F64X2Min:
-      case Opcode::F64X2PMin:
-      case Opcode::F32X4Max:
-      case Opcode::F32X4PMax:
-      case Opcode::F64X2Max:
-      case Opcode::F64X2PMax:
-      case Opcode::F32X4Add:
-      case Opcode::F64X2Add:
-      case Opcode::F32X4Sub:
-      case Opcode::F64X2Sub:
-      case Opcode::F32X4Div:
-      case Opcode::F64X2Div:
-      case Opcode::F32X4Mul:
-      case Opcode::F64X2Mul:
-      case Opcode::I8X16Swizzle:
-      case Opcode::I8X16NarrowI16X8S:
-      case Opcode::I8X16NarrowI16X8U:
-      case Opcode::I16X8NarrowI32X4S:
-      case Opcode::I16X8NarrowI32X4U:
-      case Opcode::V128Andnot:
-      case Opcode::I8X16AvgrU:
-      case Opcode::I16X8AvgrU:
-      case Opcode::I16X8ExtmulLowI8X16S:
-      case Opcode::I16X8ExtmulHighI8X16S:
-      case Opcode::I16X8ExtmulLowI8X16U:
-      case Opcode::I16X8ExtmulHighI8X16U:
-      case Opcode::I32X4ExtmulLowI16X8S:
-      case Opcode::I32X4ExtmulHighI16X8S:
-      case Opcode::I32X4ExtmulLowI16X8U:
-      case Opcode::I32X4ExtmulHighI16X8U:
-      case Opcode::I64X2ExtmulLowI32X4S:
-      case Opcode::I64X2ExtmulHighI32X4S:
-      case Opcode::I64X2ExtmulLowI32X4U:
-      case Opcode::I64X2ExtmulHighI32X4U:
-      case Opcode::I16X8Q15mulrSatS:
-      case Opcode::I32X4DotI16X8S:
+      // case Opcode::I8X16Add:
+      // case Opcode::I16X8Add:
+      // case Opcode::I32X4Add:
+      // case Opcode::I64X2Add:
+      // case Opcode::I8X16Sub:
+      // case Opcode::I16X8Sub:
+      // case Opcode::I32X4Sub:
+      // case Opcode::I64X2Sub:
+      // case Opcode::I16X8Mul:
+      // case Opcode::I32X4Mul:
+      // case Opcode::I64X2Mul:
+      // case Opcode::I8X16AddSatS:
+      // case Opcode::I8X16AddSatU:
+      // case Opcode::I16X8AddSatS:
+      // case Opcode::I16X8AddSatU:
+      // case Opcode::I8X16SubSatS:
+      // case Opcode::I8X16SubSatU:
+      // case Opcode::I16X8SubSatS:
+      // case Opcode::I16X8SubSatU:
+      // case Opcode::I8X16MinS:
+      // case Opcode::I16X8MinS:
+      // case Opcode::I32X4MinS:
+      // case Opcode::I8X16MinU:
+      // case Opcode::I16X8MinU:
+      // case Opcode::I32X4MinU:
+      // case Opcode::I8X16MaxS:
+      // case Opcode::I16X8MaxS:
+      // case Opcode::I32X4MaxS:
+      // case Opcode::I8X16MaxU:
+      // case Opcode::I16X8MaxU:
+      // case Opcode::I32X4MaxU:
+      // case Opcode::I8X16Shl:
+      // case Opcode::I16X8Shl:
+      // case Opcode::I32X4Shl:
+      // case Opcode::I64X2Shl:
+      // case Opcode::I8X16ShrS:
+      // case Opcode::I8X16ShrU:
+      // case Opcode::I16X8ShrS:
+      // case Opcode::I16X8ShrU:
+      // case Opcode::I32X4ShrS:
+      // case Opcode::I32X4ShrU:
+      // case Opcode::I64X2ShrS:
+      // case Opcode::I64X2ShrU:
+      // case Opcode::V128And:
+      // case Opcode::V128Or:
+      // case Opcode::V128Xor:
+      // case Opcode::F32X4Min:
+      // case Opcode::F32X4PMin:
+      // case Opcode::F64X2Min:
+      // case Opcode::F64X2PMin:
+      // case Opcode::F32X4Max:
+      // case Opcode::F32X4PMax:
+      // case Opcode::F64X2Max:
+      // case Opcode::F64X2PMax:
+      // case Opcode::F32X4Add:
+      // case Opcode::F64X2Add:
+      // case Opcode::F32X4Sub:
+      // case Opcode::F64X2Sub:
+      // case Opcode::F32X4Div:
+      // case Opcode::F64X2Div:
+      // case Opcode::F32X4Mul:
+      // case Opcode::F64X2Mul:
+      // case Opcode::I8X16Swizzle:
+      // case Opcode::I8X16NarrowI16X8S:
+      // case Opcode::I8X16NarrowI16X8U:
+      // case Opcode::I16X8NarrowI32X4S:
+      // case Opcode::I16X8NarrowI32X4U:
+      // case Opcode::V128Andnot:
+      // case Opcode::I8X16AvgrU:
+      // case Opcode::I16X8AvgrU:
+      // case Opcode::I16X8ExtmulLowI8X16S:
+      // case Opcode::I16X8ExtmulHighI8X16S:
+      // case Opcode::I16X8ExtmulLowI8X16U:
+      // case Opcode::I16X8ExtmulHighI8X16U:
+      // case Opcode::I32X4ExtmulLowI16X8S:
+      // case Opcode::I32X4ExtmulHighI16X8S:
+      // case Opcode::I32X4ExtmulLowI16X8U:
+      // case Opcode::I32X4ExtmulHighI16X8U:
+      // case Opcode::I64X2ExtmulLowI32X4S:
+      // case Opcode::I64X2ExtmulHighI32X4S:
+      // case Opcode::I64X2ExtmulLowI32X4U:
+      // case Opcode::I64X2ExtmulHighI32X4U:
+      // case Opcode::I16X8Q15mulrSatS:
+      // case Opcode::I32X4DotI16X8S:
       case Opcode::HandleAdd:
       case Opcode::HandleSub:
         CALLBACK(OnBinaryExpr, opcode);
@@ -1158,54 +1158,54 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::F64Le:
       case Opcode::F64Gt:
       case Opcode::F64Ge:
-      case Opcode::I8X16Eq:
-      case Opcode::I16X8Eq:
-      case Opcode::I32X4Eq:
-      case Opcode::I64X2Eq:
-      case Opcode::F32X4Eq:
-      case Opcode::F64X2Eq:
-      case Opcode::I8X16Ne:
-      case Opcode::I16X8Ne:
-      case Opcode::I32X4Ne:
-      case Opcode::I64X2Ne:
-      case Opcode::F32X4Ne:
-      case Opcode::F64X2Ne:
-      case Opcode::I8X16LtS:
-      case Opcode::I8X16LtU:
-      case Opcode::I16X8LtS:
-      case Opcode::I16X8LtU:
-      case Opcode::I32X4LtS:
-      case Opcode::I32X4LtU:
-      case Opcode::I64X2LtS:
-      case Opcode::F32X4Lt:
-      case Opcode::F64X2Lt:
-      case Opcode::I8X16LeS:
-      case Opcode::I8X16LeU:
-      case Opcode::I16X8LeS:
-      case Opcode::I16X8LeU:
-      case Opcode::I32X4LeS:
-      case Opcode::I32X4LeU:
-      case Opcode::I64X2LeS:
-      case Opcode::F32X4Le:
-      case Opcode::F64X2Le:
-      case Opcode::I8X16GtS:
-      case Opcode::I8X16GtU:
-      case Opcode::I16X8GtS:
-      case Opcode::I16X8GtU:
-      case Opcode::I32X4GtS:
-      case Opcode::I32X4GtU:
-      case Opcode::I64X2GtS:
-      case Opcode::F32X4Gt:
-      case Opcode::F64X2Gt:
-      case Opcode::I8X16GeS:
-      case Opcode::I8X16GeU:
-      case Opcode::I16X8GeS:
-      case Opcode::I16X8GeU:
-      case Opcode::I32X4GeS:
-      case Opcode::I32X4GeU:
-      case Opcode::I64X2GeS:
-      case Opcode::F32X4Ge:
-      case Opcode::F64X2Ge:
+      // case Opcode::I8X16Eq:
+      // case Opcode::I16X8Eq:
+      // case Opcode::I32X4Eq:
+      // case Opcode::I64X2Eq:
+      // case Opcode::F32X4Eq:
+      // case Opcode::F64X2Eq:
+      // case Opcode::I8X16Ne:
+      // case Opcode::I16X8Ne:
+      // case Opcode::I32X4Ne:
+      // case Opcode::I64X2Ne:
+      // case Opcode::F32X4Ne:
+      // case Opcode::F64X2Ne:
+      // case Opcode::I8X16LtS:
+      // case Opcode::I8X16LtU:
+      // case Opcode::I16X8LtS:
+      // case Opcode::I16X8LtU:
+      // case Opcode::I32X4LtS:
+      // case Opcode::I32X4LtU:
+      // case Opcode::I64X2LtS:
+      // case Opcode::F32X4Lt:
+      // case Opcode::F64X2Lt:
+      // case Opcode::I8X16LeS:
+      // case Opcode::I8X16LeU:
+      // case Opcode::I16X8LeS:
+      // case Opcode::I16X8LeU:
+      // case Opcode::I32X4LeS:
+      // case Opcode::I32X4LeU:
+      // case Opcode::I64X2LeS:
+      // case Opcode::F32X4Le:
+      // case Opcode::F64X2Le:
+      // case Opcode::I8X16GtS:
+      // case Opcode::I8X16GtU:
+      // case Opcode::I16X8GtS:
+      // case Opcode::I16X8GtU:
+      // case Opcode::I32X4GtS:
+      // case Opcode::I32X4GtU:
+      // case Opcode::I64X2GtS:
+      // case Opcode::F32X4Gt:
+      // case Opcode::F64X2Gt:
+      // case Opcode::I8X16GeS:
+      // case Opcode::I8X16GeU:
+      // case Opcode::I16X8GeS:
+      // case Opcode::I16X8GeU:
+      // case Opcode::I32X4GeS:
+      // case Opcode::I32X4GeU:
+      // case Opcode::I64X2GeS:
+      // case Opcode::F32X4Ge:
+      // case Opcode::F64X2Ge:
       case Opcode::HandleEq:
       case Opcode::HandleLt:
         CALLBACK(OnCompareExpr, opcode);
@@ -1232,124 +1232,124 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::F64Trunc:
       case Opcode::F64Nearest:
       case Opcode::F64Sqrt:
-      case Opcode::I8X16Splat:
-      case Opcode::I16X8Splat:
-      case Opcode::I32X4Splat:
-      case Opcode::I64X2Splat:
-      case Opcode::F32X4Splat:
-      case Opcode::F64X2Splat:
-      case Opcode::I8X16Neg:
-      case Opcode::I16X8Neg:
-      case Opcode::I32X4Neg:
-      case Opcode::I64X2Neg:
-      case Opcode::V128Not:
-      case Opcode::V128AnyTrue:
-      case Opcode::I8X16Bitmask:
-      case Opcode::I16X8Bitmask:
-      case Opcode::I32X4Bitmask:
-      case Opcode::I64X2Bitmask:
-      case Opcode::I8X16AllTrue:
-      case Opcode::I16X8AllTrue:
-      case Opcode::I32X4AllTrue:
-      case Opcode::I64X2AllTrue:
-      case Opcode::F32X4Ceil:
-      case Opcode::F64X2Ceil:
-      case Opcode::F32X4Floor:
-      case Opcode::F64X2Floor:
-      case Opcode::F32X4Trunc:
-      case Opcode::F64X2Trunc:
-      case Opcode::F32X4Nearest:
-      case Opcode::F64X2Nearest:
-      case Opcode::F32X4Neg:
-      case Opcode::F64X2Neg:
-      case Opcode::F32X4Abs:
-      case Opcode::F64X2Abs:
-      case Opcode::F32X4Sqrt:
-      case Opcode::F64X2Sqrt:
-      case Opcode::I16X8ExtendLowI8X16S:
-      case Opcode::I16X8ExtendHighI8X16S:
-      case Opcode::I16X8ExtendLowI8X16U:
-      case Opcode::I16X8ExtendHighI8X16U:
-      case Opcode::I32X4ExtendLowI16X8S:
-      case Opcode::I32X4ExtendHighI16X8S:
-      case Opcode::I32X4ExtendLowI16X8U:
-      case Opcode::I32X4ExtendHighI16X8U:
-      case Opcode::I64X2ExtendLowI32X4S:
-      case Opcode::I64X2ExtendHighI32X4S:
-      case Opcode::I64X2ExtendLowI32X4U:
-      case Opcode::I64X2ExtendHighI32X4U:
-      case Opcode::I8X16Abs:
-      case Opcode::I16X8Abs:
-      case Opcode::I32X4Abs:
-      case Opcode::I64X2Abs:
-      case Opcode::I8X16Popcnt:
-      case Opcode::I16X8ExtaddPairwiseI8X16S:
-      case Opcode::I16X8ExtaddPairwiseI8X16U:
-      case Opcode::I32X4ExtaddPairwiseI16X8S:
-      case Opcode::I32X4ExtaddPairwiseI16X8U:
+      // case Opcode::I8X16Splat:
+      // case Opcode::I16X8Splat:
+      // case Opcode::I32X4Splat:
+      // case Opcode::I64X2Splat:
+      // case Opcode::F32X4Splat:
+      // case Opcode::F64X2Splat:
+      // case Opcode::I8X16Neg:
+      // case Opcode::I16X8Neg:
+      // case Opcode::I32X4Neg:
+      // case Opcode::I64X2Neg:
+      // case Opcode::V128Not:
+      // case Opcode::V128AnyTrue:
+      // case Opcode::I8X16Bitmask:
+      // case Opcode::I16X8Bitmask:
+      // case Opcode::I32X4Bitmask:
+      // case Opcode::I64X2Bitmask:
+      // case Opcode::I8X16AllTrue:
+      // case Opcode::I16X8AllTrue:
+      // case Opcode::I32X4AllTrue:
+      // case Opcode::I64X2AllTrue:
+      // case Opcode::F32X4Ceil:
+      // case Opcode::F64X2Ceil:
+      // case Opcode::F32X4Floor:
+      // case Opcode::F64X2Floor:
+      // case Opcode::F32X4Trunc:
+      // case Opcode::F64X2Trunc:
+      // case Opcode::F32X4Nearest:
+      // case Opcode::F64X2Nearest:
+      // case Opcode::F32X4Neg:
+      // case Opcode::F64X2Neg:
+      // case Opcode::F32X4Abs:
+      // case Opcode::F64X2Abs:
+      // case Opcode::F32X4Sqrt:
+      // case Opcode::F64X2Sqrt:
+      // case Opcode::I16X8ExtendLowI8X16S:
+      // case Opcode::I16X8ExtendHighI8X16S:
+      // case Opcode::I16X8ExtendLowI8X16U:
+      // case Opcode::I16X8ExtendHighI8X16U:
+      // case Opcode::I32X4ExtendLowI16X8S:
+      // case Opcode::I32X4ExtendHighI16X8S:
+      // case Opcode::I32X4ExtendLowI16X8U:
+      // case Opcode::I32X4ExtendHighI16X8U:
+      // case Opcode::I64X2ExtendLowI32X4S:
+      // case Opcode::I64X2ExtendHighI32X4S:
+      // case Opcode::I64X2ExtendLowI32X4U:
+      // case Opcode::I64X2ExtendHighI32X4U:
+      // case Opcode::I8X16Abs:
+      // case Opcode::I16X8Abs:
+      // case Opcode::I32X4Abs:
+      // case Opcode::I64X2Abs:
+      // case Opcode::I8X16Popcnt:
+      // case Opcode::I16X8ExtaddPairwiseI8X16S:
+      // case Opcode::I16X8ExtaddPairwiseI8X16U:
+      // case Opcode::I32X4ExtaddPairwiseI16X8S:
+      // case Opcode::I32X4ExtaddPairwiseI16X8U:
       case Opcode::HandleGetOffset:
         CALLBACK(OnUnaryExpr, opcode);
         CALLBACK0(OnOpcodeBare);
         break;
 
-      case Opcode::V128BitSelect:
-        CALLBACK(OnTernaryExpr, opcode);
-        CALLBACK0(OnOpcodeBare);
-        break;
+      // case Opcode::V128BitSelect:
+      //   CALLBACK(OnTernaryExpr, opcode);
+      //   CALLBACK0(OnOpcodeBare);
+      //   break;
 
-      case Opcode::I8X16ExtractLaneS:
-      case Opcode::I8X16ExtractLaneU:
-      case Opcode::I16X8ExtractLaneS:
-      case Opcode::I16X8ExtractLaneU:
-      case Opcode::I32X4ExtractLane:
-      case Opcode::I64X2ExtractLane:
-      case Opcode::F32X4ExtractLane:
-      case Opcode::F64X2ExtractLane:
-      case Opcode::I8X16ReplaceLane:
-      case Opcode::I16X8ReplaceLane:
-      case Opcode::I32X4ReplaceLane:
-      case Opcode::I64X2ReplaceLane:
-      case Opcode::F32X4ReplaceLane:
-      case Opcode::F64X2ReplaceLane: {
-        uint8_t lane_val;
-        CHECK_RESULT(ReadU8(&lane_val, "Lane idx"));
-        CALLBACK(OnSimdLaneOpExpr, opcode, lane_val);
-        CALLBACK(OnOpcodeUint64, lane_val);
-        break;
-      }
+      // case Opcode::I8X16ExtractLaneS:
+      // case Opcode::I8X16ExtractLaneU:
+      // case Opcode::I16X8ExtractLaneS:
+      // case Opcode::I16X8ExtractLaneU:
+      // case Opcode::I32X4ExtractLane:
+      // case Opcode::I64X2ExtractLane:
+      // case Opcode::F32X4ExtractLane:
+      // case Opcode::F64X2ExtractLane:
+      // case Opcode::I8X16ReplaceLane:
+      // case Opcode::I16X8ReplaceLane:
+      // case Opcode::I32X4ReplaceLane:
+      // case Opcode::I64X2ReplaceLane:
+      // case Opcode::F32X4ReplaceLane:
+      // case Opcode::F64X2ReplaceLane: {
+      //   uint8_t lane_val;
+      //   CHECK_RESULT(ReadU8(&lane_val, "Lane idx"));
+      //   CALLBACK(OnSimdLaneOpExpr, opcode, lane_val);
+      //   CALLBACK(OnOpcodeUint64, lane_val);
+      //   break;
+      // }
 
-      case Opcode::I8X16Shuffle: {
-        v128 value;
-        CHECK_RESULT(ReadV128(&value, "Lane idx [16]"));
-        CALLBACK(OnSimdShuffleOpExpr, opcode, value);
-        CALLBACK(OnOpcodeV128, value);
-        break;
-      }
+      // case Opcode::I8X16Shuffle: {
+      //   v128 value;
+      //   CHECK_RESULT(ReadV128(&value, "Lane idx [16]"));
+      //   CALLBACK(OnSimdShuffleOpExpr, opcode, value);
+      //   CALLBACK(OnOpcodeV128, value);
+      //   break;
+      // }
 
-      case Opcode::V128Load8Splat:
-      case Opcode::V128Load16Splat:
-      case Opcode::V128Load32Splat:
-      case Opcode::V128Load64Splat: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
+      // case Opcode::V128Load8Splat:
+      // case Opcode::V128Load16Splat:
+      // case Opcode::V128Load32Splat:
+      // case Opcode::V128Load64Splat: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
 
-        CALLBACK(OnLoadSplatExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
-      case Opcode::V128Load32Zero:
-      case Opcode::V128Load64Zero: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
+      //   CALLBACK(OnLoadSplatExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
+      // case Opcode::V128Load32Zero:
+      // case Opcode::V128Load64Zero: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
 
-        CALLBACK(OnLoadZeroExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnLoadZeroExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
       case Opcode::I32TruncF32S:
       case Opcode::I32TruncF64S:
       case Opcode::I32TruncF32U:
@@ -1377,16 +1377,16 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::I64ReinterpretF64:
       case Opcode::I32Eqz:
       case Opcode::I64Eqz:
-      case Opcode::F32X4ConvertI32X4S:
-      case Opcode::F32X4ConvertI32X4U:
-      case Opcode::I32X4TruncSatF32X4S:
-      case Opcode::I32X4TruncSatF32X4U:
-      case Opcode::F32X4DemoteF64X2Zero:
-      case Opcode::F64X2PromoteLowF32X4:
-      case Opcode::I32X4TruncSatF64X2SZero:
-      case Opcode::I32X4TruncSatF64X2UZero:
-      case Opcode::F64X2ConvertLowI32X4S:
-      case Opcode::F64X2ConvertLowI32X4U:
+      // case Opcode::F32X4ConvertI32X4S:
+      // case Opcode::F32X4ConvertI32X4U:
+      // case Opcode::I32X4TruncSatF32X4S:
+      // case Opcode::I32X4TruncSatF32X4U:
+      // case Opcode::F32X4DemoteF64X2Zero:
+      // case Opcode::F64X2PromoteLowF32X4:
+      // case Opcode::I32X4TruncSatF64X2SZero:
+      // case Opcode::I32X4TruncSatF64X2UZero:
+      // case Opcode::F64X2ConvertLowI32X4S:
+      // case Opcode::F64X2ConvertLowI32X4U:
         CALLBACK(OnConvertExpr, opcode);
         CALLBACK0(OnOpcodeBare);
         break;
@@ -1466,141 +1466,141 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
         CALLBACK0(OnOpcodeBare);
         break;
 
-      case Opcode::MemoryAtomicNotify: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
+      // case Opcode::MemoryAtomicNotify: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
 
-        CALLBACK(OnAtomicNotifyExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicNotifyExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
-      case Opcode::MemoryAtomicWait32:
-      case Opcode::MemoryAtomicWait64: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
+      // case Opcode::MemoryAtomicWait32:
+      // case Opcode::MemoryAtomicWait64: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
 
-        CALLBACK(OnAtomicWaitExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicWaitExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
-      case Opcode::AtomicFence: {
-        uint8_t consistency_model;
-        CHECK_RESULT(ReadU8(&consistency_model, "consistency model"));
-        ERROR_UNLESS(consistency_model == 0,
-                     "atomic.fence consistency model must be 0");
-        CALLBACK(OnAtomicFenceExpr, consistency_model);
-        CALLBACK(OnOpcodeUint32, consistency_model);
-        break;
-      }
+      // case Opcode::AtomicFence: {
+      //   uint8_t consistency_model;
+      //   CHECK_RESULT(ReadU8(&consistency_model, "consistency model"));
+      //   ERROR_UNLESS(consistency_model == 0,
+      //                "atomic.fence consistency model must be 0");
+      //   CALLBACK(OnAtomicFenceExpr, consistency_model);
+      //   CALLBACK(OnOpcodeUint32, consistency_model);
+      //   break;
+      // }
 
-      case Opcode::I32AtomicLoad8U:
-      case Opcode::I32AtomicLoad16U:
-      case Opcode::I64AtomicLoad8U:
-      case Opcode::I64AtomicLoad16U:
-      case Opcode::I64AtomicLoad32U:
-      case Opcode::I32AtomicLoad:
-      case Opcode::I64AtomicLoad: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
+      // case Opcode::I32AtomicLoad8U:
+      // case Opcode::I32AtomicLoad16U:
+      // case Opcode::I64AtomicLoad8U:
+      // case Opcode::I64AtomicLoad16U:
+      // case Opcode::I64AtomicLoad32U:
+      // case Opcode::I32AtomicLoad:
+      // case Opcode::I64AtomicLoad: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "load alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "load offset"));
 
-        CALLBACK(OnAtomicLoadExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicLoadExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
-      case Opcode::I32AtomicStore8:
-      case Opcode::I32AtomicStore16:
-      case Opcode::I64AtomicStore8:
-      case Opcode::I64AtomicStore16:
-      case Opcode::I64AtomicStore32:
-      case Opcode::I32AtomicStore:
-      case Opcode::I64AtomicStore: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "store alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "store offset"));
+      // case Opcode::I32AtomicStore8:
+      // case Opcode::I32AtomicStore16:
+      // case Opcode::I64AtomicStore8:
+      // case Opcode::I64AtomicStore16:
+      // case Opcode::I64AtomicStore32:
+      // case Opcode::I32AtomicStore:
+      // case Opcode::I64AtomicStore: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "store alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "store offset"));
 
-        CALLBACK(OnAtomicStoreExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicStoreExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
-      case Opcode::I32AtomicRmwAdd:
-      case Opcode::I64AtomicRmwAdd:
-      case Opcode::I32AtomicRmw8AddU:
-      case Opcode::I32AtomicRmw16AddU:
-      case Opcode::I64AtomicRmw8AddU:
-      case Opcode::I64AtomicRmw16AddU:
-      case Opcode::I64AtomicRmw32AddU:
-      case Opcode::I32AtomicRmwSub:
-      case Opcode::I64AtomicRmwSub:
-      case Opcode::I32AtomicRmw8SubU:
-      case Opcode::I32AtomicRmw16SubU:
-      case Opcode::I64AtomicRmw8SubU:
-      case Opcode::I64AtomicRmw16SubU:
-      case Opcode::I64AtomicRmw32SubU:
-      case Opcode::I32AtomicRmwAnd:
-      case Opcode::I64AtomicRmwAnd:
-      case Opcode::I32AtomicRmw8AndU:
-      case Opcode::I32AtomicRmw16AndU:
-      case Opcode::I64AtomicRmw8AndU:
-      case Opcode::I64AtomicRmw16AndU:
-      case Opcode::I64AtomicRmw32AndU:
-      case Opcode::I32AtomicRmwOr:
-      case Opcode::I64AtomicRmwOr:
-      case Opcode::I32AtomicRmw8OrU:
-      case Opcode::I32AtomicRmw16OrU:
-      case Opcode::I64AtomicRmw8OrU:
-      case Opcode::I64AtomicRmw16OrU:
-      case Opcode::I64AtomicRmw32OrU:
-      case Opcode::I32AtomicRmwXor:
-      case Opcode::I64AtomicRmwXor:
-      case Opcode::I32AtomicRmw8XorU:
-      case Opcode::I32AtomicRmw16XorU:
-      case Opcode::I64AtomicRmw8XorU:
-      case Opcode::I64AtomicRmw16XorU:
-      case Opcode::I64AtomicRmw32XorU:
-      case Opcode::I32AtomicRmwXchg:
-      case Opcode::I64AtomicRmwXchg:
-      case Opcode::I32AtomicRmw8XchgU:
-      case Opcode::I32AtomicRmw16XchgU:
-      case Opcode::I64AtomicRmw8XchgU:
-      case Opcode::I64AtomicRmw16XchgU:
-      case Opcode::I64AtomicRmw32XchgU: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "memory alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "memory offset"));
+      // case Opcode::I32AtomicRmwAdd:
+      // case Opcode::I64AtomicRmwAdd:
+      // case Opcode::I32AtomicRmw8AddU:
+      // case Opcode::I32AtomicRmw16AddU:
+      // case Opcode::I64AtomicRmw8AddU:
+      // case Opcode::I64AtomicRmw16AddU:
+      // case Opcode::I64AtomicRmw32AddU:
+      // case Opcode::I32AtomicRmwSub:
+      // case Opcode::I64AtomicRmwSub:
+      // case Opcode::I32AtomicRmw8SubU:
+      // case Opcode::I32AtomicRmw16SubU:
+      // case Opcode::I64AtomicRmw8SubU:
+      // case Opcode::I64AtomicRmw16SubU:
+      // case Opcode::I64AtomicRmw32SubU:
+      // case Opcode::I32AtomicRmwAnd:
+      // case Opcode::I64AtomicRmwAnd:
+      // case Opcode::I32AtomicRmw8AndU:
+      // case Opcode::I32AtomicRmw16AndU:
+      // case Opcode::I64AtomicRmw8AndU:
+      // case Opcode::I64AtomicRmw16AndU:
+      // case Opcode::I64AtomicRmw32AndU:
+      // case Opcode::I32AtomicRmwOr:
+      // case Opcode::I64AtomicRmwOr:
+      // case Opcode::I32AtomicRmw8OrU:
+      // case Opcode::I32AtomicRmw16OrU:
+      // case Opcode::I64AtomicRmw8OrU:
+      // case Opcode::I64AtomicRmw16OrU:
+      // case Opcode::I64AtomicRmw32OrU:
+      // case Opcode::I32AtomicRmwXor:
+      // case Opcode::I64AtomicRmwXor:
+      // case Opcode::I32AtomicRmw8XorU:
+      // case Opcode::I32AtomicRmw16XorU:
+      // case Opcode::I64AtomicRmw8XorU:
+      // case Opcode::I64AtomicRmw16XorU:
+      // case Opcode::I64AtomicRmw32XorU:
+      // case Opcode::I32AtomicRmwXchg:
+      // case Opcode::I64AtomicRmwXchg:
+      // case Opcode::I32AtomicRmw8XchgU:
+      // case Opcode::I32AtomicRmw16XchgU:
+      // case Opcode::I64AtomicRmw8XchgU:
+      // case Opcode::I64AtomicRmw16XchgU:
+      // case Opcode::I64AtomicRmw32XchgU: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "memory alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "memory offset"));
 
-        CALLBACK(OnAtomicRmwExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicRmwExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
-      case Opcode::I32AtomicRmwCmpxchg:
-      case Opcode::I64AtomicRmwCmpxchg:
-      case Opcode::I32AtomicRmw8CmpxchgU:
-      case Opcode::I32AtomicRmw16CmpxchgU:
-      case Opcode::I64AtomicRmw8CmpxchgU:
-      case Opcode::I64AtomicRmw16CmpxchgU:
-      case Opcode::I64AtomicRmw32CmpxchgU: {
-        Address alignment_log2;
-        CHECK_RESULT(ReadAlignment(&alignment_log2, "memory alignment"));
-        Address offset;
-        CHECK_RESULT(ReadAddress(&offset, 0, "memory offset"));
+      // case Opcode::I32AtomicRmwCmpxchg:
+      // case Opcode::I64AtomicRmwCmpxchg:
+      // case Opcode::I32AtomicRmw8CmpxchgU:
+      // case Opcode::I32AtomicRmw16CmpxchgU:
+      // case Opcode::I64AtomicRmw8CmpxchgU:
+      // case Opcode::I64AtomicRmw16CmpxchgU:
+      // case Opcode::I64AtomicRmw32CmpxchgU: {
+      //   Address alignment_log2;
+      //   CHECK_RESULT(ReadAlignment(&alignment_log2, "memory alignment"));
+      //   Address offset;
+      //   CHECK_RESULT(ReadAddress(&offset, 0, "memory offset"));
 
-        CALLBACK(OnAtomicRmwCmpxchgExpr, opcode, alignment_log2, offset);
-        CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
-        break;
-      }
+      //   CALLBACK(OnAtomicRmwCmpxchgExpr, opcode, alignment_log2, offset);
+      //   CALLBACK(OnOpcodeUint32Uint32, alignment_log2, offset);
+      //   break;
+      // }
 
       case Opcode::TableInit: {
         Index segment;

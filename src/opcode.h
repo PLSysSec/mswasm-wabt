@@ -92,7 +92,7 @@ struct Opcode {
   Address GetAlignment(Address alignment) const;
 
   static bool IsPrefixByte(uint8_t byte) {
-    return byte == kMathPrefix || byte == kThreadsPrefix || byte == kSimdPrefix;
+    return byte == kMathPrefix; // || byte == kThreadsPrefix || byte == kSimdPrefix;
   }
 
   bool IsEnabled(const Features& features) const;
