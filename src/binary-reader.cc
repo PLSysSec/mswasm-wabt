@@ -1206,6 +1206,8 @@ Result BinaryReader::ReadFunctionBody(Offset end_offset) {
       case Opcode::I64X2GeS:
       case Opcode::F32X4Ge:
       case Opcode::F64X2Ge:
+      case Opcode::HandleEq:
+      case Opcode::HandleLt:
         CALLBACK(OnCompareExpr, opcode);
         CALLBACK0(OnOpcodeBare);
         break;

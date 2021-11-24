@@ -153,6 +153,8 @@ bool IsPlainInstr(TokenType token_type) {
     case TokenType::HandleAdd:
     case TokenType::HandleSub:
     case TokenType::HandleNull:
+    case TokenType::HandleEq:
+    case TokenType::HandleLt:
     case TokenType::HandleGetOffset:
     case TokenType::Throw:
     case TokenType::Rethrow:
@@ -2032,12 +2034,6 @@ Result WastParser::ParsePlainInstr(std::unique_ptr<Expr>* out_expr) {
     case TokenType::HandleNull: {
       ErrorUnlessOpcodeEnabled(Consume());
       out_expr->reset(new HandleNullExpr(loc));
-      break;
-    }
-
-    case TokenType::HandleGetOffset: {
-      ErrorUnlessOpcodeEnabled(Consume());
-      out_expr->reset(new HandleGetOffsetExpr(loc));
       break;
     }
 

@@ -772,12 +772,6 @@ Result TypeChecker::OnHandleNullExpr() {
   return Result::Ok;
 }
 
-Result TypeChecker::OnHandleGetOffsetExpr() {
-  Result result = PopAndCheck1Type(Type::Handle, "handle.get_offset");
-  PushType(Type::I32);
-  return result;
-}
-
 Result TypeChecker::OnNewSegmentExpr() {
   Result result = PopAndCheck1Type(Type::I32, "new_segment");
   PushType(Type::Handle);

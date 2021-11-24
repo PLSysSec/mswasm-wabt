@@ -303,7 +303,6 @@ enum class ExprType {
   GlobalGet,
   GlobalSet,
   HandleNull,
-  HandleGetOffset,
   If,
   Load,
   LocalGet,
@@ -435,7 +434,6 @@ typedef RefTypeExpr<ExprType::RefNull> RefNullExpr;
 typedef ExprMixin<ExprType::RefIsNull> RefIsNullExpr;
 
 typedef ExprMixin<ExprType::HandleNull> HandleNullExpr;
-typedef ExprMixin<ExprType::HandleGetOffset> HandleGetOffsetExpr;
 typedef ExprMixin<ExprType::NewSegment> NewSegmentExpr;
 typedef ExprMixin<ExprType::FreeSegment> FreeSegmentExpr;
 

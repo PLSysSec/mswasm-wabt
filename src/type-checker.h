@@ -113,7 +113,6 @@ class TypeChecker {
   Result OnRefNullExpr(Type type);
   Result OnRefIsNullExpr();
   Result OnHandleNullExpr();
-  Result OnHandleGetOffsetExpr();
   Result OnNewSegmentExpr();
   Result OnFreeSegmentExpr();
   Result OnRethrow(Index depth);

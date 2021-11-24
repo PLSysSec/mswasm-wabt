@@ -183,7 +183,6 @@ ModuleContext::Arities ModuleContext::GetExprArity(const Expr& expr) const {
     case ExprType::LoadSplat:
     case ExprType::LoadZero:
     case ExprType::NewSegment:
-    case ExprType::HandleGetOffset:
       return { 1, 1 };
 
     case ExprType::Drop:

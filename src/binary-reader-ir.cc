@@ -188,7 +188,6 @@ class BinaryReaderIR : public BinaryReaderNop {
   Result OnRefNullExpr(Type type) override;
   Result OnRefIsNullExpr() override;
   Result OnHandleNullExpr() override;
-  Result OnHandleGetOffsetExpr() override;
   Result OnNewSegmentExpr() override;
   Result OnFreeSegmentExpr() override;
   Result OnNopExpr() override;
@@ -932,10 +931,6 @@ Result BinaryReaderIR::OnRefIsNullExpr() {
 
 Result BinaryReaderIR::OnHandleNullExpr() {
   return AppendExpr(MakeUnique<HandleNullExpr>());
-}
-
-Result BinaryReaderIR::OnHandleGetOffsetExpr() {
-  return AppendExpr(MakeUnique<HandleGetOffsetExpr>());
 }
 
 Result BinaryReaderIR::OnNewSegmentExpr() {

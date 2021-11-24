@@ -181,6 +181,8 @@ handle.load, TokenType::HandleLoad, Opcode::HandleLoad
 handle.store, TokenType::HandleStore, Opcode::HandleStore
 handle.add, TokenType::Binary, Opcode::HandleAdd
 handle.sub, TokenType::Binary, Opcode::HandleSub
+handle.eq, TokenType::Compare, Opcode::HandleEq
+handle.lt, TokenType::Compare, Opcode::HandleLt
 i16x8.abs, TokenType::Unary, Opcode::I16X8Abs
 i16x8.add_sat_s, TokenType::Binary, Opcode::I16X8AddSatS
 i16x8.add_sat_u, TokenType::Binary, Opcode::I16X8AddSatU

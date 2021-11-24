@@ -461,6 +461,8 @@ Instr Istream::Read(Offset* offset) const {
     case Opcode::I8X16Swizzle:
     case Opcode::HandleAdd:
     case Opcode::HandleSub:
+    case Opcode::HandleEq:
+    case Opcode::HandleLt:
       // 0 immediates, 2 operands
       instr.kind = InstrKind::Imm_0_Op_2;
       break;

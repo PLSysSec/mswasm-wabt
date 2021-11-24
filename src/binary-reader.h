@@ -272,7 +272,6 @@ class BinaryReaderDelegate {
   virtual Result OnRefNullExpr(Type type) = 0;
   virtual Result OnRefIsNullExpr() = 0;
   virtual Result OnHandleNullExpr() = 0;
-  virtual Result OnHandleGetOffsetExpr() = 0;
   virtual Result OnNewSegmentExpr() = 0;
   virtual Result OnFreeSegmentExpr() = 0;
   virtual Result OnNopExpr() = 0;

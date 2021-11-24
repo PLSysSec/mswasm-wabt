@@ -1028,13 +1028,6 @@ Result SharedValidator::OnHandleNull(const Location& loc) {
   return result;
 }
 
-Result SharedValidator::OnHandleGetOffset(const Location& loc) {
-  Result result = Result::Ok;
-  expr_loc_ = &loc;
-  result |= typechecker_.OnHandleGetOffsetExpr();
-  return result;
-}
-
 Result SharedValidator::OnNewSegment(const Location& loc) {
   Result result = Result::Ok;
   expr_loc_ = &loc;
