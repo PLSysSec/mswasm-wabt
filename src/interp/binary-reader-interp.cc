@@ -238,7 +238,8 @@ class BinaryReaderInterp : public BinaryReaderNop {
                           uint8_t flags) override;
   Result OnDataSegmentData(Index index,
                            const void* data,
-                           Address size) override;
+                           Address size,
+                           std::vector<uint32_t> pointers) override;
 
   Result OnInitExprF32ConstExpr(Index index, uint32_t value) override;
   Result OnInitExprF64ConstExpr(Index index, uint64_t value) override;
@@ -805,7 +806,8 @@ Result BinaryReaderInterp::BeginDataSegment(Index index,
 
 Result BinaryReaderInterp::OnDataSegmentData(Index index,
                                              const void* src_data,
-                                             Address size) {
+                                             Address size,
+                                             std::vector<uint32_t> pointers) {
   DataDesc& dst_data = module_.datas.back();
   if (size > 0) {
     dst_data.data.resize(size);

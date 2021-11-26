@@ -1430,6 +1430,9 @@ void WatWriter::WriteDataSegment(const DataSegment& segment) {
   if (segment.kind != SegmentKind::Passive) {
     WriteInitExpr(segment.offset);
   }
+  WriteOpenSpace("pointers");
+  WriteQuotedData(segment.pointer_offsets.data(), segment.pointer_offsets.size() * sizeof(uint32_t));
+  WriteCloseSpace();
   WriteQuotedData(segment.data.data(), segment.data.size());
   WriteCloseNewline();
   data_segment_index_++;

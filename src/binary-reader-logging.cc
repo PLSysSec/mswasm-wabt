@@ -433,10 +433,11 @@ Result BinaryReaderLogging::OnElemSegmentElemType(Index index, Type elem_type) {
 
 Result BinaryReaderLogging::OnDataSegmentData(Index index,
                                               const void* data,
-                                              Address size) {
-  LOGF("OnDataSegmentData(index:%" PRIindex ", size:%" PRIaddress ")\n", index,
+                                              Address size,
+                                              std::vector<uint32_t> pointers) {
+  LOGF("OnDataSegmentData(index:%" PRIindex ", size:%" PRIaddress ")\n", index, 
        size);
-  return reader_->OnDataSegmentData(index, data, size);
+  return reader_->OnDataSegmentData(index, data, size, pointers);
 }
 
 Result BinaryReaderLogging::OnModuleNameSubsection(Index index,

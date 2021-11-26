@@ -2566,10 +2566,17 @@ Result BinaryReader::ReadDataSection(Offset section_size) {
       CALLBACK(EndDataSegmentInitExpr, i);
     }
 
+    uint32_t num_pointers = 0;
+    CHECK_RESULT(ReadU32Leb128(&num_pointers, "data size"));
+    std::vector<uint32_t> pointers(num_pointers);
+    for (uint32_t i = 0; i < num_pointers; i++) {
+      CHECK_RESULT(ReadU32Leb128(&pointers[i], "data size"));
+    }
+
     Address data_size;
     const void* data;
     CHECK_RESULT(ReadBytes(&data, &data_size, "data segment data"));
-    CALLBACK(OnDataSegmentData, i, data, data_size);
+    CALLBACK(OnDataSegmentData, i, data, data_size, pointers);
     CALLBACK(EndDataSegment, i);
   }
   CALLBACK0(EndDataSection);

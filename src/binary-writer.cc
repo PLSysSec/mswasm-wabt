@@ -1581,6 +1581,8 @@ Result BinaryWriter::WriteModule() {
         assert(module_->GetMemoryIndex(segment->memory_var) == 0);
         WriteInitExpr(segment->offset);
       }
+      WriteU32Leb128(stream_, segment->pointer_offsets.size(), "num pointer offsets");
+      stream_->WriteData(segment->pointer_offsets, "data segment pointer offsets");
       WriteU32Leb128(stream_, segment->data.size(), "data segment size");
       WriteHeader("data segment data", i);
       stream_->WriteData(segment->data, "data segment data");

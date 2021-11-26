@@ -360,7 +360,8 @@ class BinaryReaderNop : public BinaryReaderDelegate {
   Result EndDataSegmentInitExpr(Index index) override { return Result::Ok; }
   Result OnDataSegmentData(Index index,
                            const void* data,
-                           Address size) override {
+                           Address size,
+                           std::vector<uint32_t> pointers) override {
     return Result::Ok;
   }
   Result EndDataSegment(Index index) override { return Result::Ok; }

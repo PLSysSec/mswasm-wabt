@@ -265,7 +265,8 @@ class BinaryReaderLogging : public BinaryReaderDelegate {
   Result EndDataSegmentInitExpr(Index index) override;
   Result OnDataSegmentData(Index index,
                            const void* data,
-                           Address size) override;
+                           Address size,
+                           std::vector<uint32_t> pointers) override;
   Result EndDataSegment(Index index) override;
   Result EndDataSection() override;
 

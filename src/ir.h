@@ -793,6 +793,7 @@ struct DataSegment {
   Var memory_var;
   ExprList offset;
   std::vector<uint8_t> data;
+  std::vector<uint32_t> pointer_offsets;
 };
 
 class Import {

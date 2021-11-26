@@ -332,7 +332,8 @@ class BinaryReaderDelegate {
   virtual Result EndDataSegmentInitExpr(Index index) = 0;
   virtual Result OnDataSegmentData(Index index,
                                    const void* data,
-                                   Address size) = 0;
+                                   Address size,
+                                   std::vector<uint32_t> pointers) = 0;
   virtual Result EndDataSegment(Index index) = 0;
   virtual Result EndDataSection() = 0;
 

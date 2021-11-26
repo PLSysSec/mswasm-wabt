@@ -930,7 +930,8 @@ class BinaryReaderObjdump : public BinaryReaderObjdumpBase {
                           uint8_t flags) override;
   Result OnDataSegmentData(Index index,
                            const void* data,
-                           Address size) override;
+                           Address size,
+                           std::vector<uint32_t> pointers) override;
 
   Result OnModuleName(string_view name) override;
   Result OnFunctionName(Index function_index,
@@ -1701,7 +1702,8 @@ Result BinaryReaderObjdump::BeginDataSegment(Index index,
 
 Result BinaryReaderObjdump::OnDataSegmentData(Index index,
                                               const void* src_data,
-                                              Address size) {
+                                              Address size,
+                                              std::vector<uint32_t> pointers) {
   if (!ShouldPrintDetails()) {
     return Result::Ok;
   }

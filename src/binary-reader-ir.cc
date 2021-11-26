@@ -233,7 +233,8 @@ class BinaryReaderIR : public BinaryReaderNop {
   Result EndDataSegmentInitExpr(Index index) override;
   Result OnDataSegmentData(Index index,
                            const void* data,
-                           Address size) override;
+                           Address size,
+                           std::vector<uint32_t> pointers) override;
 
   Result OnModuleName(string_view module_name) override;
   Result OnFunctionNamesCount(Index num_functions) override;
@@ -1219,12 +1220,16 @@ Result BinaryReaderIR::EndDataSegmentInitExpr(Index index) {
 
 Result BinaryReaderIR::OnDataSegmentData(Index index,
                                          const void* data,
-                                         Address size) {
+                                         Address size,
+                                         std::vector<uint32_t> pointers) {
   assert(index == module_->data_segments.size() - 1);
   DataSegment* segment = module_->data_segments[index];
   segment->data.resize(size);
   if (size > 0) {
     memcpy(segment->data.data(), data, size);
+  }
+  for (uint32_t ptr : pointers) {
+    segment->pointer_offsets.push_back(ptr);
   }
   return Result::Ok;
 }
